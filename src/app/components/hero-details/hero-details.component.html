@@ -1,1 +1,69 @@
-<p>hero-details works!</p>
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentHero.id">
+        <h4>Ficha</h4>
+        <div>
+            <img src="{{ currentHero.imagePath }}" class="img-circle">
+        </div>
+        <div>
+            <label><h2>{{ currentHero.name }}</h2></label>
+        </div>
+        <div>
+            <label>{{ currentHero.civil }} <span class="badge badge-secondary">{{ currentHero.universe }}</span></label>
+        </div>
+        <div>
+            
+        </div>
+        <a class="badge badge-warning" routerLink="/heroes/{{ currentHero.id }}">
+            Editar
+        </a>
+    </div>
+
+    <div *ngIf="!currentHero">
+        <br />
+        <p>Clique em um herói...</p>
+    </div>
+</div>
+
+<ng-template #editable>
+    <div *ngIf="currentHero.id" class="edit-form">
+        <h4>Editar: {{ currentHero.name }}</h4>
+        <form>
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="currentHero.name" name="name" />
+            </div>
+
+            <div class="form-group">
+                <label for="civil">Nome Civil</label>
+                <input class="form-control" id="civil" required [(ngModel)]="currentHero.civil" name="civil" />
+            </div>
+
+            <div class="form-group">
+                <label for="universe">Universo</label>
+                <div>
+                    <select class="form-control" aria-label="Universo" id="universe" required
+                        [(ngModel)]="currentHero.universe" name="universe">
+                        <option selected>Selecione</option>
+                        <option value="1">Marvel</option>
+                        <option value="2">DC</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <button class="badge badge-danger mr-2" (click)="deleteHero()" disabled="true">
+            Excluir
+        </button>
+
+        <button type="submit" class="badge badge-success mb-2" (click)="updateHero()" disabled="true">
+            Alterar
+        </button>
+        <p>{{ message }}</p>
+    </div>
+
+
+    <div *ngIf="!currentHero.id">
+        <br />
+        <p>Cannot access this Hero...</p>
+    </div>
+</ng-template>
