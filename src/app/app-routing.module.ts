@@ -1,7 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
+import { HeroDetailsComponent } from './components/hero-details/hero-details.component';
+import { AddHeroComponent } from './components/add-hero/add-hero.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'heroes', pathMatch: 'full' },
+  { path: 'heroes', component: HeroesListComponent },
+  { path: 'heroes/:id', component: HeroDetailsComponent },
+  { path: 'add', component: AddHeroComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
