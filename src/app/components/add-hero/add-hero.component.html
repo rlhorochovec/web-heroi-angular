@@ -1,0 +1,34 @@
+<div>
+    <div class="submit-form">
+        <div *ngIf="!submitted">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="hero.name" name="name" />
+            </div>
+
+            <div class="form-group">
+                <label for="civil">Nome Civil</label>
+                <input class="form-control" id="civil" required [(ngModel)]="hero.civil" name="civil" />
+            </div>
+
+            <div class="form-group">
+                <label for="universe">Universo</label>
+                <div>
+                    <select class="form-control" aria-label="Universo" id="universe" required
+                        [(ngModel)]="hero.universe" name="universe">
+                        <option selected>Selecione</option>
+                        <option value="1">Marvel</option>
+                        <option value="2">DC</option>
+                    </select>
+                </div>
+            </div>
+
+            <button (click)="saveHero()" class="btn btn-success" disabled="true">Salvar</button>
+        </div>
+
+        <div *ngIf="submitted">
+            <h4>Hero was submitted successfully!</h4>
+            <button class="btn btn-success" (click)="newHero()">Novo</button>
+        </div>
+    </div>
+</div>
