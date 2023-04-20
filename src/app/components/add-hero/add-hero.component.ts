@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Hero } from 'src/app/models/hero.model';
+import { HeroService } from 'src/app/services/hero.service';
 
 @Component({
   selector: 'app-add-hero',
@@ -7,9 +9,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddHeroComponent implements OnInit {
 
-  constructor() { }
+  hero: Hero = {
+    name: '',
+    civil: '',
+    universe: '',
+    image: '',
+    imagePath: ''
+  };
+  submitted = false;
+
+  constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
   }
 
+  saveHero(): void {
+    const data = {
+      name: this.hero.name,
+      civil: this.hero.civil,
+      universe: this.hero.universe,
+      image: this.hero.image,
+      imagePath: this.hero.imagePath
+    };
+
+    this.heroService.create(data)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.submitted = true;
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+  newHero(): void {
+    this.submitted = false;
+    this.hero = {
+      name: '',
+      civil: '',
+      universe: '',
+      image: '',
+      imagePath: ''
+    };
+  }
 }
