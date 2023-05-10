@@ -16,6 +16,7 @@ export class AddHeroComponent implements OnInit {
     image: '',
     imagePath: ''
   };
+  universes = ['Marvel', 'DC'];
   submitted = false;
 
   constructor(private heroService: HeroService) { }
