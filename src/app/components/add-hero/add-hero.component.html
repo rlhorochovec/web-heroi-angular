@@ -13,14 +13,12 @@
 
             <div class="form-group">
                 <label for="universe">Universo</label>
-                <div>
-                    <select class="form-control" aria-label="Universo" id="universe" required
-                        [(ngModel)]="hero.universe" name="universe">
-                        <option selected>Selecione</option>
-                        <option value="1">Marvel</option>
-                        <option value="2">DC</option>
-                    </select>
-                </div>
+                <select class="form-control" aria-label="Universo" id="universe" required [(ngModel)]="hero.universe"
+                    name="universe">
+                    <option *ngFor="let item of universes">
+                        {{ item }}
+                    </option>
+                </select>
             </div>
 
             <button (click)="saveHero()" class="btn btn-success" disabled="true">Salvar</button>
