@@ -19,7 +19,7 @@ export class HeroDetailsComponent implements OnInit {
     image: '',
     imagePath: ''
   };
-
+  universes = ['Marvel', 'DC'];
   message = '';
 
   constructor(
